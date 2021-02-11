@@ -1,4 +1,17 @@
 {
 
-  "chromeWebSecurity": false
+  "chromeWebSecurity": false,
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "reportDir": "cypress/reports",
+    "reportFilename": "report",
+    "overwrite": false,
+    "html": true,
+    "json": true,
+    "charts": true
+  },
+  "video": false,
+  "env": {
+    "MAILOSAUR_API_KEY": "ZG7eiCHLNDPYWSL"
+  }
 }

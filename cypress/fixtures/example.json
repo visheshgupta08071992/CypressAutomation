@@ -1,5 +1,7 @@
 {
   "email": "admin@yourstore.com",
   "password": "admin",
-  "url": "https://admin-demo.nopcommerce.com"
+  "url": "https://admin-demo.nopcommerce.com",
+  "server":"2f614kke",
+  "name": "vishesh"
 }
