@@ -1,0 +1,145 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-02-12T12:46:08.851Z",
+    "end": "2021-02-12T12:46:28.673Z",
+    "duration": 19822,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e5ba7d87-5399-46b5-abaf-8ac0b3d3170c",
+      "title": "",
+      "fullFile": "cypress/integration/examples/RetrieveSignUpUrlfromEmailOrchard.js",
+      "file": "cypress/integration/examples/RetrieveSignUpUrlfromEmailOrchard.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "18c8e077-41a7-44c4-a62a-052de087c5cc",
+          "title": "UI Elements",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Makes a Password Reset requestl",
+              "fullTitle": "UI Elements Makes a Password Reset requestl",
+              "timedOut": null,
+              "duration": 7856,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//1.Provide you Mailsour Account API key and Server Name\n//2. Generate a unique email address for this test\ntestEmail = \"\".concat(id, \"@\").concat(data.server, \".mailosaur.net\"); //3. **Your automation code that triggers an email to `emailAddress`**\n// cy.visit(\"https://networkacme.test.devappdirect.me/signup\")\ncy.visit(\"https://od-p3fyer6yt.od26.appdirectondemand.com/signup\");\ncy.get('input[type=\\'email\\']').type(testEmail); //  cy.log(testEmail)\ncy.get('button[type=\\'submit\\']').click();",
+              "err": {},
+              "uuid": "56b1df1f-9415-4fbf-b346-e98954d87b08",
+              "parentUUID": "18c8e077-41a7-44c4-a62a-052de087c5cc",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Get Singup Link email and signup to MarketPlace",
+              "fullTitle": "UI Elements Get Singup Link email and signup to MarketPlace",
+              "timedOut": null,
+              "duration": 7535,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.mailosaurGetMessage(data.server, {\n  sentTo: testEmail\n}).then(function (email) {\n  expect(email.subject).to.equal('Please verify your email address for AppDirect');\n  var $body = Cypress.$(email.html.body);\n  cy.log($body.text());\n  var emailBody = $body.text();\n  var signUpLink = emailBody.match(signUpLinkRegex).toString();\n  cy.log(signUpLink);\n  cy.visit(signUpLink);\n  var input = \"Test@12345\";\n  cy.get('input[name=\\'firstName\\']').type(input);\n  cy.get('input[name=\\'lastName\\']').type(input);\n  cy.get('.password').type(input);\n  cy.get('.confirm-password').type(input);\n  cy.get('.phone-number').type(input);\n  cy.get('#termsAndConditions').click();\n  cy.get('#idd').click();\n});",
+              "err": {},
+              "uuid": "52b8caca-a773-4c33-a7ca-24b38a7ef989",
+              "parentUUID": "18c8e077-41a7-44c4-a62a-052de087c5cc",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Retrieve Username and Password",
+              "fullTitle": "UI Elements Retrieve Username and Password",
+              "timedOut": null,
+              "duration": 19,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var message = 'Hi, VisheshKumar. Welcome to G Suite from APPDIRECT. Please save this email for future reference.Your credentials for your administer Google Apps for goog-test.b73220211.appdirect.com.iaasprov.in are:Username: vishesh@goog-test.b73220211.appdirect.com.iaasprov.inPassword: da24v0ikrn4476aa4bdsqrk0kl To complete the set up of your Google Apps account you\\'\\'ll need to do the following steps: 1. Go to admin.google.com, and then click the Google Apps for Business application tile.2. Accept a G Suite reseller agreement.3. Accept the G Suite for Work by Resellers terms of service.4. Verify that you own goog-test.b73220211.appdirect.com.iaasprov.in by clicking through the start the setup guide. Respond to Google’s prompts to complete the verification process.5. Enable Email set up through the setup process Thanks! APPDIRECT\\n';\nvar UserEmail = message.match(userNameRegex).toString().split(':')[1].split('Password')[0];\nvar password = message.match(passwordRegex).toString().split(':')[1];\ncy.log('UserEmail is ', UserEmail);\ncy.log('password is ', password);",
+              "err": {},
+              "uuid": "b6ad22f1-c545-42c7-a78a-739f67e6834e",
+              "parentUUID": "18c8e077-41a7-44c4-a62a-052de087c5cc",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "56b1df1f-9415-4fbf-b346-e98954d87b08",
+            "52b8caca-a773-4c33-a7ca-24b38a7ef989",
+            "b6ad22f1-c545-42c7-a78a-739f67e6834e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 15410,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "report",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "reportFilename": "report",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "charts": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}

@@ -15,7 +15,29 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import 'ad-cypress-lib/cypress/support'
 require('cypress-mailosaur');
+require('ad-cypress-lib');
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    return false
+})
+
+const path = require('path');
+module.exports = (on, config) => {
+    on('before:browser:launch', (browser = {}, args) => {
+        console.log(config, browser, args);
+        if (browser.name === 'chrome') {
+            const ignoreXFrameHeadersExtension = path.join(__dirname, '../extensions/ignore-x-frame-headers');
+            args.push(args.push(`--load-extension=${ignoreXFrameHeadersExtension}`));
+            args.push("--disable-features=CrossSiteDocumentBlockingIfIsolating,CrossSiteDocumentBlockingAlways,IsolateOrigins,site-per-process");
+        }
+        return args;
+    });
+};
+

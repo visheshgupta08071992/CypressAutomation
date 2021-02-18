@@ -1,0 +1,164 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-02-14T10:01:51.510Z",
+    "end": "2021-02-14T10:02:16.206Z",
+    "duration": 24696,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "a86a4a31-e2f7-4c67-bd73-a7df82415c76",
+      "title": "",
+      "fullFile": "cypress/integration/examples/E2EPurchaseGSuite.js",
+      "file": "cypress/integration/examples/E2EPurchaseGSuite.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "1dfe8da8-7242-4789-bfb5-b849c52cc342",
+          "title": "UI Elements",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Makes a Password Reset requestl",
+              "fullTitle": "UI Elements Makes a Password Reset requestl",
+              "timedOut": null,
+              "duration": 6945,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//1. Generate a unique email address for this test\ntestEmail = \"\".concat(id, \"@\").concat(data.server, \".mailosaur.net\");\ncy.log(testEmail); //3. **Your automation code that triggers an email to `emailAddress`**\ncy.visit(Cypress.env('Orchard_URL'));\ncy.get('input[type=\\'email\\']').type(testEmail);\ncy.get('button[type=\\'submit\\']').click();",
+              "err": {},
+              "uuid": "681539bb-cc9f-440f-9b99-d009eaac5722",
+              "parentUUID": "1dfe8da8-7242-4789-bfb5-b849c52cc342",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Get Singup Link email and signup to MarketPlace",
+              "fullTitle": "UI Elements Get Singup Link email and signup to MarketPlace",
+              "timedOut": null,
+              "duration": 11950,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.mailosaurGetMessage(data.server, {\n  sentTo: testEmail\n}).then(function (email) {\n  expect(email.subject).to.equal('Please verify your email address for AppDirect');\n  var $body = Cypress.$(email.html.body);\n  cy.log($body.text());\n  var emailBody = $body.text();\n  var signUpLink = emailBody.match(signUpLinkRegex).toString();\n  cy.log(signUpLink);\n  cy.visit(signUpLink);\n  var input = \"Test@12345\";\n  cy.get('input[name=\\'firstName\\']').type(input);\n  cy.get('input[name=\\'lastName\\']').type(input);\n  cy.get('.password').type(input);\n  cy.get('.confirm-password').type(input);\n  cy.get('.phone-number').type(input);\n  cy.get('#termsAndConditions').click();\n  cy.get('#idd').click();\n});",
+              "err": {},
+              "uuid": "c0f8d486-b0ab-4dab-bbb5-562cb1ceb02d",
+              "parentUUID": "1dfe8da8-7242-4789-bfb5-b849c52cc342",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Purchase Gsuite Product",
+              "fullTitle": "UI Elements Purchase Gsuite Product",
+              "timedOut": null,
+              "duration": 15,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "f6e5c29d-b125-48f0-b688-dee9f3249f6a",
+              "parentUUID": "1dfe8da8-7242-4789-bfb5-b849c52cc342",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Retrieve Username and Password",
+              "fullTitle": "UI Elements Retrieve Username and Password",
+              "timedOut": null,
+              "duration": 15,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var message = 'Hi, VisheshKumar. Welcome to G Suite from APPDIRECT. Please save this email for future reference.Your credentials for your administer Google Apps for goog-test.b73220211.appdirect.com.iaasprov.in are:Username: vishesh@goog-test.b73220211.appdirect.com.iaasprov.inPassword: da24v0ikrn4476aa4bdsqrk0kl To complete the set up of your Google Apps account you\\'\\'ll need to do the following steps: 1. Go to admin.google.com, and then click the Google Apps for Business application tile.2. Accept a G Suite reseller agreement.3. Accept the G Suite for Work by Resellers terms of service.4. Verify that you own goog-test.b73220211.appdirect.com.iaasprov.in by clicking through the start the setup guide. Respond to Google’s prompts to complete the verification process.5. Enable Email set up through the setup process Thanks! APPDIRECT\\n';\nvar UserEmail = message.match(userNameRegex).toString().split(':')[1].split('Password')[0];\nvar password = message.match(passwordRegex).toString().split(':')[1];\ncy.log('UserEmail is ', UserEmail);\ncy.log('password is ', password);",
+              "err": {},
+              "uuid": "ffc6d361-7e01-468b-b4d2-cd1f1e196fcf",
+              "parentUUID": "1dfe8da8-7242-4789-bfb5-b849c52cc342",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "681539bb-cc9f-440f-9b99-d009eaac5722",
+            "c0f8d486-b0ab-4dab-bbb5-562cb1ceb02d",
+            "f6e5c29d-b125-48f0-b688-dee9f3249f6a",
+            "ffc6d361-7e01-468b-b4d2-cd1f1e196fcf"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 18925,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "report",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "reportFilename": "report",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "charts": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}

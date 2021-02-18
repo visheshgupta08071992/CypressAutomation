@@ -9,6 +9,7 @@ describe('UI Elements',()=>{
     var id = uuid.v4();
     const userNameRegex=/Username:(\W)([^\s]+)/g;
     const passwordRegex=/Password:(\W)([^\s]+)/g;
+    const signUpLinkRegex=/https:(\W)(\W)([^\s]+)/g;
     //2. Generate a unique email address for this test
     let testEmail
     let credsMail="f0ef0a71-1d43-44e3-b053-6cb59307700b}@2f614kke.mailosaur.net"
@@ -27,7 +28,7 @@ describe('UI Elements',()=>{
 
         //3. **Your automation code that triggers an email to `emailAddress`**
        // cy.visit("https://networkacme.test.devappdirect.me/signup")
-        cy.visit("https://od-fktjethjv.od26.appdirectondemand.com/signup")
+        cy.visit("https://od-p3fyer6yt.od26.appdirectondemand.com/signup")
         cy.get('input[type=\'email\']').type(testEmail)
       //  cy.log(testEmail)
         cy.get('button[type=\'submit\']').click()
@@ -37,8 +38,12 @@ describe('UI Elements',()=>{
         cy.mailosaurGetMessage(data.server, {
             sentTo: testEmail
         }).then(email => {
+
             expect(email.subject).to.equal('Please verify your email address for AppDirect');
-            let signUpLink = email.html.links[0].href
+            const $body = Cypress.$(email.html.body)
+            cy.log(($body).text())
+            var emailBody=($body).text()
+            const signUpLink = emailBody.match(signUpLinkRegex).toString()
             cy.log(signUpLink)
             cy.visit(signUpLink)
             let input="Test@12345";
